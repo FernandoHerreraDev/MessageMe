@@ -1,0 +1,30 @@
+<div class="ui inverted menu">
+  <div class="ui container">
+   <%= link_to "Chatroom", root_path, class: "item" %>
+    <a class="item">
+      Messages
+    </a>
+    <div class="right menu">
+      <div class="item">
+        <div class="ui icon input">
+          <input type="text" placeholder="Search...">
+          <i class="search link icon"></i>
+        </div>
+      </div>
+      <% if current_user %>
+        <%= link_to current_user.username + " Profile", login_path, class: "item" %>
+      <% else %>
+        <div class="ui dropdown item">
+          Account <i class="dropdown icon"></i>
+          <div class="menu">
+            <a class="item">Sign Up</a>
+            <%= link_to "Log In", login_path, class: "item" %>
+          </div>
+        </div>
+      <% end %>
+      <% if log_in? %>
+        <%= link_to "Log out", logout_path, class: "ui item", method: :delete %>
+      <% end %>
+    </div>
+  </div>
+</div>

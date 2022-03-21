@@ -1,0 +1,36 @@
+<h2 class="ui center aligned icon header">
+  <i class="circular red inverted users icon"></i>
+  Amaizing Chatroom
+</h2>
+<div class="ui two column grid">
+  <div class="four wide column">
+    <div class="ui inverted vertical pointing menu">
+      <% @users.each do |user| %>
+        <a class="item <%= current_user.username  ==  user.username ? "active" : "" %>">
+         <%= user.username %>
+        </a>
+      <% end %>
+    </div>
+  </div>
+  <div class="twelve wide column">
+    <div class="ui fluid raise card chatbox">
+    <div class="content overfloww-mod" id="message-container">
+      <% @messages.each do |message| %>
+        <%= render 'message', message: message %>
+      <% end %>
+    </div>
+      <div class="extra content">
+        <%= form_for(@message, html: {class: "ui reply form", role: "form" }, url: message_path, remote: true) do |m| %>
+          <div class="field">
+            <div class="ui fluid icon input">
+              <%= m.text_field :body %>
+              <%= m.button '<i class="bordered inverted black edit icon"></i>'.html_safe %>
+            </div>
+          </div>
+        <% end %>
+    </div>
+    </div>
+  </div>
+</div>
+
+
